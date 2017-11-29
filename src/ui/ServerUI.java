@@ -1,4 +1,6 @@
-package server;
+package ui;
+
+import server.SchiffServer;
 
 public class ServerUI
 {

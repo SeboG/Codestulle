@@ -1,4 +1,6 @@
-package client;
+package ui;
+
+import client.SchiffClient;
 
 public class ClientUI
 {

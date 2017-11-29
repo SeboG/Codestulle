@@ -13,6 +13,7 @@ public class ServerThread extends Thread
 {
 	private Socket clientSocket;
 	private ClientConnection gameConni;
+	private BufferedWriter writer;
 
 	public ServerThread(Socket clientSocket)
 	{
@@ -34,7 +35,7 @@ public class ServerThread extends Thread
 			{
 				out = gameConni.playerA.getClientSocket().getOutputStream();
 			}
-			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out));
+			writer = new BufferedWriter(new OutputStreamWriter(out));
 			InputStream in = clientSocket.getInputStream();
 			BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 			while (clientSocket.isConnected())
@@ -59,6 +60,21 @@ public class ServerThread extends Thread
 	{
 		int x = koords.charAt(0) - 97;
 		int y = Integer.parseInt(koords.substring(1, 2)) - 1;
+		/*
+		 * An Spiel senden
+		 */
+		String antwortMsg = "";
+		/*
+		 * zurück bekommen, ergebnis zurückschicken
+		 */
+		try
+		{
+			writer.write(antwortMsg);
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 	public ClientConnection getGameConni()

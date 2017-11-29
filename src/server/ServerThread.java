@@ -25,11 +25,13 @@ public class ServerThread extends Thread
 		try
 		{
 			OutputStream out;
-			if(clientSocket.equals(gameConni.playerA.getClientSocket())) {
-				
+			if (clientSocket.equals(gameConni.playerA.getClientSocket()))
+			{
+
 				out = gameConni.playerB.getClientSocket().getOutputStream();
 			}
-			else {
+			else
+			{
 				out = gameConni.playerA.getClientSocket().getOutputStream();
 			}
 			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out));
@@ -40,9 +42,10 @@ public class ServerThread extends Thread
 				String msg = reader.readLine();
 				if (msg != null)
 				{
-					writer.write(msg);
-					writer.newLine();
-					writer.flush();
+					if (msg.length() == 2)
+					{
+						empfangeKoords(msg);
+					}
 				}
 			}
 		}
@@ -50,6 +53,12 @@ public class ServerThread extends Thread
 		{
 			e.printStackTrace();
 		}
+	}
+
+	private void empfangeKoords(String koords)
+	{
+		int x = koords.charAt(0) - 97;
+		int y = Integer.parseInt(koords.substring(1, 2)) - 1;
 	}
 
 	public ClientConnection getGameConni()

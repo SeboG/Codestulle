@@ -102,6 +102,8 @@ public class SchiffServer {
 			out = connectionSocket.getOutputStream();
 			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out));
 			writer.write(text);
+			writer.newLine();
+			writer.flush();
 		}
 		catch (IOException e)
 		{

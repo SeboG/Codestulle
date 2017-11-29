@@ -9,6 +9,9 @@ public class ClientUI
 		SchiffClient client = new SchiffClient();
 		if (client.verbinden("localhost", 5000))
 		{
+			client.empfangen();
+		}
+		while(true) {
 			
 		}
 	}
